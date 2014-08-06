@@ -21,6 +21,12 @@
 		B097700E19920F840021E9E9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0976FF019920F840021E9E9 /* UIKit.framework */; };
 		B097701619920F840021E9E9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B097701419920F840021E9E9 /* InfoPlist.strings */; };
 		B097701819920F840021E9E9 /* HotNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B097701719920F840021E9E9 /* HotNewsTests.m */; };
+		B09770241992106D0021E9E9 /* SHScrollMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = B09770231992106D0021E9E9 /* SHScrollMenuView.m */; };
+		B0977029199213B40021E9E9 /* leftShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0977026199213B40021E9E9 /* leftShadow@2x.png */; };
+		B097702A199213B40021E9E9 /* managerMenuButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0977027199213B40021E9E9 /* managerMenuButton@2x.png */; };
+		B097702B199213B40021E9E9 /* rightShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0977028199213B40021E9E9 /* rightShadow@2x.png */; };
+		B097702E199218390021E9E9 /* SHMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B097702D199218390021E9E9 /* SHMenuItem.m */; };
+		B0977031199234A80021E9E9 /* SHIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0977030199234A80021E9E9 /* SHIndicatorView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,15 @@
 		B097701319920F840021E9E9 /* HotNewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HotNewsTests-Info.plist"; sourceTree = "<group>"; };
 		B097701519920F840021E9E9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B097701719920F840021E9E9 /* HotNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotNewsTests.m; sourceTree = "<group>"; };
+		B09770221992106D0021E9E9 /* SHScrollMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHScrollMenuView.h; sourceTree = "<group>"; };
+		B09770231992106D0021E9E9 /* SHScrollMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHScrollMenuView.m; sourceTree = "<group>"; };
+		B0977026199213B40021E9E9 /* leftShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftShadow@2x.png"; sourceTree = "<group>"; };
+		B0977027199213B40021E9E9 /* managerMenuButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "managerMenuButton@2x.png"; sourceTree = "<group>"; };
+		B0977028199213B40021E9E9 /* rightShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightShadow@2x.png"; sourceTree = "<group>"; };
+		B097702C199218390021E9E9 /* SHMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHMenuItem.h; sourceTree = "<group>"; };
+		B097702D199218390021E9E9 /* SHMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHMenuItem.m; sourceTree = "<group>"; };
+		B097702F199234A80021E9E9 /* SHIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHIndicatorView.h; sourceTree = "<group>"; };
+		B0977030199234A80021E9E9 /* SHIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHIndicatorView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +127,8 @@
 		B0976FF219920F840021E9E9 /* HotNews */ = {
 			isa = PBXGroup;
 			children = (
+				B0977025199213B40021E9E9 /* Resources */,
+				B0977021199210340021E9E9 /* menuView */,
 				B0976FFB19920F840021E9E9 /* SHAppDelegate.h */,
 				B0976FFC19920F840021E9E9 /* SHAppDelegate.m */,
 				B0976FFE19920F840021E9E9 /* Main.storyboard */,
@@ -150,6 +167,29 @@
 				B097701419920F840021E9E9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0977021199210340021E9E9 /* menuView */ = {
+			isa = PBXGroup;
+			children = (
+				B09770221992106D0021E9E9 /* SHScrollMenuView.h */,
+				B09770231992106D0021E9E9 /* SHScrollMenuView.m */,
+				B097702C199218390021E9E9 /* SHMenuItem.h */,
+				B097702D199218390021E9E9 /* SHMenuItem.m */,
+				B097702F199234A80021E9E9 /* SHIndicatorView.h */,
+				B0977030199234A80021E9E9 /* SHIndicatorView.m */,
+			);
+			name = menuView;
+			sourceTree = "<group>";
+		};
+		B0977025199213B40021E9E9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B0977026199213B40021E9E9 /* leftShadow@2x.png */,
+				B0977027199213B40021E9E9 /* managerMenuButton@2x.png */,
+				B0977028199213B40021E9E9 /* rightShadow@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +272,9 @@
 				B097700519920F840021E9E9 /* Images.xcassets in Resources */,
 				B0976FF719920F840021E9E9 /* InfoPlist.strings in Resources */,
 				B097700019920F840021E9E9 /* Main.storyboard in Resources */,
+				B097702B199213B40021E9E9 /* rightShadow@2x.png in Resources */,
+				B097702A199213B40021E9E9 /* managerMenuButton@2x.png in Resources */,
+				B0977029199213B40021E9E9 /* leftShadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,9 +293,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B097702E199218390021E9E9 /* SHMenuItem.m in Sources */,
 				B0976FF919920F840021E9E9 /* main.m in Sources */,
 				B097700319920F840021E9E9 /* SHViewController.m in Sources */,
 				B0976FFD19920F840021E9E9 /* SHAppDelegate.m in Sources */,
+				B09770241992106D0021E9E9 /* SHScrollMenuView.m in Sources */,
+				B0977031199234A80021E9E9 /* SHIndicatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,8 +7,12 @@
 //
 
 #import "SHViewController.h"
+#import "SHScrollMenuView.h"
+#import "SHMenuItem.h"
 
 @interface SHViewController ()
+
+@property (strong, nonatomic) SHScrollMenuView *menuView;
 
 @end
 
@@ -18,6 +22,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _menuView = [[SHScrollMenuView alloc] initWithFrame:CGRectMake(0, 22, CGRectGetWidth(self.view.bounds), 36)];
+    for (int i = 0; i < 10; i++)
+    {
+        SHMenuItem *menuItem = [[SHMenuItem alloc] init];
+        menuItem.title = [NSString stringWithFormat:@"菜单-%d", i];
+        [_menuView.menuItems addObject:menuItem];
+    }
+    _menuView.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.000];
+    [_menuView updateView];
+    [self.view addSubview:_menuView];
 }
 
 - (void)didReceiveMemoryWarning
