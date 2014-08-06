@@ -1,0 +1,13 @@
+//
+//  SHViewController.h
+//  HotNews
+//
+//  Created by p2p on 14-8-6.
+//  Copyright (c) 2014年 Li Long. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface SHViewController : UIViewController
+
+@end
