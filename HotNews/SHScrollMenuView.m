@@ -67,6 +67,9 @@ const CGFloat kMenuIndicatorHeight = 3;
     {
         [_indicatorView setFrame:frame];
     }
+    
+    // make button frame visible
+    [_scrollView scrollRectToVisible:frame animated:animate];
 }
 
 - (void)updateView
