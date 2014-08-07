@@ -180,7 +180,7 @@ const CGFloat kMenuIndicatorHeight = 3;
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonSize.width, buttonSize.height)];
     menuButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     menuButton.titleLabel.font = titleFont;
-//    menuButton setTitleColor:<#(UIColor *)#> forState:<#(UIControlState)#>
+
     [menuButton setTitle:menuItem.title forState:UIControlStateNormal];
     [menuButton setTitle:menuItem.title forState:UIControlStateHighlighted];
     [menuButton setTitle:menuItem.title forState:UIControlStateSelected];

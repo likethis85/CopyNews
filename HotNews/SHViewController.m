@@ -9,10 +9,12 @@
 #import "SHViewController.h"
 #import "SHScrollMenuView.h"
 #import "SHMenuItem.h"
+#import "SHScrollPageView.h"
 
 @interface SHViewController ()
 
 @property (strong, nonatomic) SHScrollMenuView *menuView;
+@property (strong, nonatomic) SHScrollPageView *pageView;
 
 @end
 
@@ -23,6 +25,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     _menuView = [[SHScrollMenuView alloc] initWithFrame:CGRectMake(0, 22, CGRectGetWidth(self.view.bounds), 36)];
+    _pageView = [[SHScrollPageView alloc] initWithFrame:CGRectMake(0, 22+36, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-22-36)];
     for (int i = 0; i < 10; i++)
     {
         SHMenuItem *menuItem = [[SHMenuItem alloc] init];
@@ -32,6 +35,11 @@
     _menuView.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.000];
     [_menuView updateView];
     [self.view addSubview:_menuView];
+    
+    NSUInteger pageCount = _menuView.menuItems.count;
+    [_pageView setPageCount:pageCount];
+    [_pageView updateView];
+    [self.view addSubview:_pageView];
 }
 
 - (void)didReceiveMemoryWarning
