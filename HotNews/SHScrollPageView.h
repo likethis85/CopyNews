@@ -19,7 +19,6 @@
 
 @property (strong, nonatomic) id<SHScrollPageViewDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *pageViews;
-//@property (strong, nonatomic) UIView *placeholderView;
 @property (assign, nonatomic) NSUInteger pageCount;
 
 - (void)setSelectedPage:(NSUInteger)selectedIndex animate:(BOOL)animate;

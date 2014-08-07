@@ -9,12 +9,12 @@
 #import "SHViewController.h"
 #import "SHScrollMenuView.h"
 #import "SHMenuItem.h"
-#import "SHScrollPageView.h"
+#import "SHContentPageView.h"
 
 @interface SHViewController ()
 
-@property (strong, nonatomic) SHScrollMenuView *menuView;
-@property (strong, nonatomic) SHScrollPageView *pageView;
+@property (strong, nonatomic) SHScrollMenuView  *menuView;
+@property (strong, nonatomic) SHContentPageView *pageView;
 
 @end
 
@@ -25,7 +25,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     _menuView = [[SHScrollMenuView alloc] initWithFrame:CGRectMake(0, 22, CGRectGetWidth(self.view.bounds), 36)];
-    _pageView = [[SHScrollPageView alloc] initWithFrame:CGRectMake(0, 22+36, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-22-36)];
+    _pageView = [[SHContentPageView alloc] initWithFrame:CGRectMake(0, 22+36, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-22-36)];
     for (int i = 0; i < 10; i++)
     {
         SHMenuItem *menuItem = [[SHMenuItem alloc] init];
