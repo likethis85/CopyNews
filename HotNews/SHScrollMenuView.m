@@ -39,7 +39,7 @@ const CGFloat kMenuIndicatorHeight = 3;
 }
 
 #pragma mark - Public Methods
-- (void)setSelectedMenuItem:(NSInteger)selectedIndex animate:(BOOL)animate
+- (void)setSelectedMenuItem:(NSInteger)selectedIndex animate:(BOOL)animate notify:(BOOL)notify
 {
     if (selectedIndex >= _menuItems.count)
         return ;
@@ -70,6 +70,29 @@ const CGFloat kMenuIndicatorHeight = 3;
     
     // make button frame visible
     [_scrollView scrollRectToVisible:frame animated:animate];
+    
+    if (_shouldNotify && notify)
+    {
+        if (_delegate && [_delegate respondsToSelector:@selector(scrollMenuDidSelectedItem:selectedIndex:)])
+        {
+            [_delegate scrollMenuDidSelectedItem:self selectedIndex:selectedIndex];
+        }
+    }
+}
+
+- (void)updateIndicatorFrame:(CGFloat)offsetRatio
+{
+    CGRect frame = [self _frameForItemAtIndex:_selectedIndex];
+    NSInteger neerIndex = (offsetRatio > 0) ? (_selectedIndex + 1) : (_selectedIndex - 1);
+    NSAssert(neerIndex >= 0, @"This value must always > 0");
+    NSAssert(neerIndex < _menuButtons.count, @"This value should < total count");
+    CGRect neerFrame = [self _frameForItemAtIndex:neerIndex];
+    CGRect indicatorFrame = frame;
+    indicatorFrame.origin.x += CGRectGetWidth(frame) * offsetRatio;
+    indicatorFrame.origin.y = CGRectGetMinY(_indicatorView.frame);
+    indicatorFrame.size.height = CGRectGetHeight(_indicatorView.frame);
+    indicatorFrame.size.width = CGRectGetWidth(frame) * (1 - fabs(offsetRatio)) + CGRectGetWidth(neerFrame) * fabs(offsetRatio);
+    [_indicatorView setFrame:indicatorFrame];
 }
 
 - (void)updateView
@@ -98,7 +121,7 @@ const CGFloat kMenuIndicatorHeight = 3;
         else
         {
             CGRect prevItemFrame = [self _frameForItemAtIndex:i-1];
-            menuFrame.origin.x = prevItemFrame.origin.x + CGRectGetWidth(menuFrame);
+            menuFrame.origin.x = CGRectGetMaxX(prevItemFrame);
         }
         menuFrame.origin.y = CGRectGetMidY(self.bounds) - CGRectGetHeight(menuFrame)/2;
         [menuButton setFrame:menuFrame];
@@ -109,15 +132,16 @@ const CGFloat kMenuIndicatorHeight = 3;
         _rightShadowImageView.hidden = NO;
     }
     
-    [self setSelectedMenuItem:_selectedIndex animate:NO];
+    [self setSelectedMenuItem:_selectedIndex animate:NO notify:NO];
 }
 
 #pragma mark - Private Methods
 - (void)_setup
 {
     _selectedIndex = 0;
-    _menuItems = [[NSMutableArray alloc] init];
-    _menuButtons = [[NSMutableArray alloc] initWithCapacity:_menuItems.count];
+    _shouldNotify  = NO;
+    _menuItems     = [[NSMutableArray alloc] init];
+    _menuButtons   = [[NSMutableArray alloc] initWithCapacity:_menuItems.count];
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     _leftShadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftShadow"]];
@@ -196,7 +220,7 @@ const CGFloat kMenuIndicatorHeight = 3;
     NSInteger index = [_menuButtons indexOfObject:sender];
     if (index == NSNotFound)
         return;
-    [self setSelectedMenuItem:index animate:YES];
+    [self setSelectedMenuItem:index animate:YES notify:YES];
 }
 
 - (void)_menuManagerButtonAction:(UIButton *)sender

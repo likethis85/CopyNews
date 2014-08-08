@@ -12,7 +12,9 @@
 
 @protocol SHScrollPageViewDelegate <NSObject>
 
-
+@optional
+- (void)pageViewScrolling:(SHScrollPageView *)pageView scrollRatio:(CGFloat)ratio;
+- (void)pageViewPageDidChanged:(SHScrollPageView *)pageView currentPage:(NSUInteger)currentPage;
 @end
 
 @interface SHScrollPageView : UIView
@@ -24,6 +26,7 @@
 @property (strong, nonatomic) UIScrollView   *scrollView;
 @property (assign, nonatomic) BOOL           hasPageControl;
 @property (assign, nonatomic) BOOL           shouldObserve;// should observe scrollView contentOffset
+@property (assign, nonatomic) BOOL           shouldNotify;  // nofity delegate when page changed
 
 - (void)setSelectedPage:(NSUInteger)selectedIndex animate:(BOOL)animate;
 - (void)updateView;

@@ -12,6 +12,7 @@
 
 @protocol SHScrollMenuViewDelegate <NSObject>
 
+@optional
 - (void)scrollMenuDidSelectedItem:(SHScrollMenuView *)menuView selectedIndex:(NSInteger)selectedIndex;
 - (void)scrollMenuManagerSelected:(SHScrollMenuView *)menuView;
 
@@ -19,10 +20,12 @@
 
 @interface SHScrollMenuView : UIView
 
+@property (assign, nonatomic) BOOL shouldNotify;
 @property (strong, nonatomic) NSMutableArray *menuItems;
 @property (strong, nonatomic) id<SHScrollMenuViewDelegate> delegate;
 
-- (void)setSelectedMenuItem:(NSInteger)selectedIndex animate:(BOOL)animate;
+- (void)setSelectedMenuItem:(NSInteger)selectedIndex animate:(BOOL)animate notify:(BOOL)notify;
+- (void)updateIndicatorFrame:(CGFloat)offsetRatio;
 - (void)updateView;
 
 @end

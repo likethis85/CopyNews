@@ -83,6 +83,14 @@ NSString * kContentOffsetKey = @"contentOffset";
     [_scrollView scrollRectToVisible:frame animated:animate];
 
     _pageControl.currentPage = selectedIndex;
+    
+    if (_shouldNotify)
+    {
+        if (_delegate && [_delegate respondsToSelector:@selector(pageViewPageDidChanged:currentPage:)])
+        {
+            [_delegate pageViewPageDidChanged:self currentPage:_currentPage];
+        }
+    }
 }
 
 - (void)updateView
@@ -151,8 +159,21 @@ NSString * kContentOffsetKey = @"contentOffset";
     {
         UIScrollView *scrollView = (UIScrollView *)object;
         CGFloat offsetX = scrollView.contentOffset.x;
-        NSLog(@"contentOffsetX=%f", offsetX);
         
+        CGFloat pageWidth = CGRectGetWidth(scrollView.frame);
+        CGFloat currentX  = _currentPage * pageWidth;
+        if (currentX != offsetX)
+        {
+            BOOL direction = (currentX > offsetX);
+            NSInteger index = direction ? (_currentPage-1) : (_currentPage + 1);
+            if (index < 0 || index >= _pageCount)
+                return;
+            CGFloat ratio = (offsetX - currentX) / pageWidth;
+            if (_delegate && [_delegate respondsToSelector:@selector(pageViewScrolling:scrollRatio:)])
+            {
+                [_delegate pageViewScrolling:self scrollRatio:ratio];
+            }
+        }
     }
 }
 
