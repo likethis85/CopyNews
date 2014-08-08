@@ -29,7 +29,6 @@
 		B0977031199234A80021E9E9 /* SHIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0977030199234A80021E9E9 /* SHIndicatorView.m */; };
 		B0977035199279660021E9E9 /* SHScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0977034199279660021E9E9 /* SHScrollPageView.m */; };
 		B0E7025E199316E700C623D9 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0E7025D199316E700C623D9 /* logo@2x.png */; };
-		B0E7026919938B8B00C623D9 /* SHContentPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E7026819938B8B00C623D9 /* SHContentPageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,8 +73,6 @@
 		B0977033199279660021E9E9 /* SHScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHScrollPageView.h; sourceTree = "<group>"; };
 		B0977034199279660021E9E9 /* SHScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHScrollPageView.m; sourceTree = "<group>"; };
 		B0E7025D199316E700C623D9 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
-		B0E7026719938B8B00C623D9 /* SHContentPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHContentPageView.h; sourceTree = "<group>"; };
-		B0E7026819938B8B00C623D9 /* SHContentPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHContentPageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,8 +204,6 @@
 			children = (
 				B0977033199279660021E9E9 /* SHScrollPageView.h */,
 				B0977034199279660021E9E9 /* SHScrollPageView.m */,
-				B0E7026719938B8B00C623D9 /* SHContentPageView.h */,
-				B0E7026819938B8B00C623D9 /* SHContentPageView.m */,
 			);
 			name = pageView;
 			sourceTree = "<group>";
@@ -319,7 +314,6 @@
 				B0977035199279660021E9E9 /* SHScrollPageView.m in Sources */,
 				B0976FF919920F840021E9E9 /* main.m in Sources */,
 				B097700319920F840021E9E9 /* SHViewController.m in Sources */,
-				B0E7026919938B8B00C623D9 /* SHContentPageView.m in Sources */,
 				B0976FFD19920F840021E9E9 /* SHAppDelegate.m in Sources */,
 				B09770241992106D0021E9E9 /* SHScrollMenuView.m in Sources */,
 				B0977031199234A80021E9E9 /* SHIndicatorView.m in Sources */,

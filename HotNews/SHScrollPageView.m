@@ -8,6 +8,8 @@
 
 #import "SHScrollPageView.h"
 
+NSString * kContentOffsetKey = @"contentOffset";
+
 @interface SHScrollPageView () <UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIPageControl *pageControl;
@@ -26,10 +28,16 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [_scrollView removeObserver:self forKeyPath:kContentOffsetKey];
+}
+
 #pragma mark - Private Methods
 - (void)_setup
 {
     _currentPage = 0;
+    _shouldObserve = NO;
     _pageViews = [[NSMutableArray alloc] init];
     
     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
@@ -39,6 +47,8 @@
     _scrollView.pagingEnabled = YES;
     _scrollView.delegate = self;
     [self addSubview:_scrollView];
+    
+    [self.scrollView addObserver:self forKeyPath:kContentOffsetKey options:0 context:NULL];
     
     _pageControl = [[UIPageControl alloc] init];
     [self addSubview:_pageControl];
@@ -132,6 +142,18 @@
 
     int currentPage = floor((offsetX - pageWidth/2)/pageWidth)+1;
     [self setSelectedPage:currentPage animate:YES];
+}
+
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (_shouldObserve && [keyPath isEqualToString:kContentOffsetKey])
+    {
+        UIScrollView *scrollView = (UIScrollView *)object;
+        CGFloat offsetX = scrollView.contentOffset.x;
+        NSLog(@"contentOffsetX=%f", offsetX);
+        
+    }
 }
 
 @end

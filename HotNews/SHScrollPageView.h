@@ -19,10 +19,11 @@
 
 @property (strong, nonatomic) id<SHScrollPageViewDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *pageViews;
-@property (assign, nonatomic) NSUInteger pageCount;
-@property (assign, nonatomic) NSUInteger currentPage;
-@property (strong, nonatomic) UIScrollView *scrollView;
-@property (assign, nonatomic) BOOL hasPageControl;
+@property (assign, nonatomic) NSUInteger     pageCount;
+@property (assign, nonatomic) NSUInteger     currentPage;
+@property (strong, nonatomic) UIScrollView   *scrollView;
+@property (assign, nonatomic) BOOL           hasPageControl;
+@property (assign, nonatomic) BOOL           shouldObserve;// should observe scrollView contentOffset
 
 - (void)setSelectedPage:(NSUInteger)selectedIndex animate:(BOOL)animate;
 - (void)updateView;
