@@ -10,8 +10,7 @@
 
 @interface SHScrollPageView () <UIScrollViewDelegate>
 
-@property (strong, nonatomic) UIScrollView *scrollView;
-@property (assign, nonatomic) NSUInteger currentPageIndex;
+@property (strong, nonatomic) UIPageControl *pageControl;
 
 @end
 
@@ -30,7 +29,7 @@
 #pragma mark - Private Methods
 - (void)_setup
 {
-    _currentPageIndex = 0;
+    _currentPage = 0;
     _pageViews = [[NSMutableArray alloc] init];
     
     _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
@@ -39,8 +38,10 @@
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _scrollView.pagingEnabled = YES;
     _scrollView.delegate = self;
-    
     [self addSubview:_scrollView];
+    
+    _pageControl = [[UIPageControl alloc] init];
+    [self addSubview:_pageControl];
 }
 
 - (CGRect)_frameForPageAtIndex:(NSUInteger)index
@@ -48,17 +49,30 @@
     return CGRectMake(index*CGRectGetWidth(self.bounds), 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
 }
 
+- (void)_resizePageControl
+{
+    _pageControl.hidden = !_hasPageControl;
+    if (_hasPageControl)
+    {
+        CGSize controlSize = [_pageControl sizeForNumberOfPages:_pageControl.numberOfPages];
+        CGRect frame = CGRectMake(0, 0, controlSize.width, controlSize.height);
+        frame.origin.x = CGRectGetWidth(self.bounds) - controlSize.width - 10;
+        frame.origin.y = CGRectGetHeight(self.bounds) - controlSize.height + 2;
+        [_pageControl setFrame:frame];
+    }
+}
+
 #pragma mark - Public Methods
 - (void)setSelectedPage:(NSUInteger)selectedIndex animate:(BOOL)animate
 {
     if (selectedIndex >= _pageViews.count)
-    {
         return;
-    }
     
-    _currentPageIndex = selectedIndex;
+    _currentPage = selectedIndex;
     CGRect frame = [self _frameForPageAtIndex:selectedIndex];
     [_scrollView scrollRectToVisible:frame animated:animate];
+
+    _pageControl.currentPage = selectedIndex;
 }
 
 - (void)updateView
@@ -88,7 +102,9 @@
         [_scrollView addSubview:pageView];
     }
     
-    [self setSelectedPage:_currentPageIndex animate:NO];
+    _pageControl.hidden = !_hasPageControl;
+    
+    [self setSelectedPage:_currentPage animate:NO];
 }
 
 - (void)setPageCount:(NSUInteger)pageCount
@@ -98,6 +114,14 @@
     CGFloat pageWidth = CGRectGetWidth(self.bounds);
     CGFloat contentWidth = pageWidth * pageCount;
     [_scrollView setContentSize:CGSizeMake(contentWidth, CGRectGetHeight(self.bounds))];
+    _pageControl.numberOfPages = pageCount;
+    [self _resizePageControl];
+}
+
+- (void)setHasPageControl:(BOOL)hasPageControl
+{
+    _hasPageControl = hasPageControl;
+    [self _resizePageControl];
 }
 
 #pragma mark - UIScrollViewDelegate
