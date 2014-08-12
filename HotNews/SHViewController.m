@@ -23,23 +23,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSArray *menuTitles = @[@"头条", @"财经", @"科技", @"汽车", @"娱乐", @"体育", @"轻松一刻"];
 	// Do any additional setup after loading the view, typically from a nib.
     _menuView = [[SHScrollMenuView alloc] initWithFrame:CGRectMake(0, 22, CGRectGetWidth(self.view.bounds), 36)];
     _pageView = [[SHScrollPageView alloc] initWithFrame:CGRectMake(0, 22+36, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-22-36)];
-//    for (int i = 0; i < 10; i++)
+    for (NSString *title in menuTitles)
     {
         SHMenuItem *menuItem = [[SHMenuItem alloc] init];
-        menuItem.title = [NSString stringWithFormat:@"热点"];
-        [_menuView.menuItems addObject:menuItem];
-    }
-    {
-        SHMenuItem *menuItem = [[SHMenuItem alloc] init];
-        menuItem.title = [NSString stringWithFormat:@"轻松一刻"];
-        [_menuView.menuItems addObject:menuItem];
-    }
-    {
-        SHMenuItem *menuItem = [[SHMenuItem alloc] init];
-        menuItem.title = [NSString stringWithFormat:@"很长很长的名字"];
+        menuItem.title = title;
         [_menuView.menuItems addObject:menuItem];
     }
     _menuView.delegate = self;
